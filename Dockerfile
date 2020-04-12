@@ -18,16 +18,16 @@ RUN \
 	curl \
 	tzdata \
 	xz
-
 # grab base tarball
 RUN \
  mkdir /root-out && \
  curl -o \
-	/rootfs.tar.gz -L \
-	https://github.com/containous/traefik/releases/download/${REL}/traefik_${REL}_linux_${ARCH}.tar.gz && \
- tar xf \
-        /rootfs.tar.gz -C \
-        /root-out
+	/traefik -L \
+	https://github.com/containous/traefik/releases/download/v1.7.23/traefik_linux-386 && \
+ cp \
+        /traefik \
+        /root-out && \
+ chmod +x /root-out/traefik
 
 
 FROM scratch
@@ -37,3 +37,4 @@ COPY script/ca-certificates.crt /etc/ssl/certs/
 EXPOSE 80
 VOLUME ["/tmp"]
 ENTRYPOINT ["/traefik"]
+
