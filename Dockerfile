@@ -1,7 +1,7 @@
 FROM alpine:3.10 as rootfs-stage
 
 # environment
-ENV REL=v2.2.0
+ENV REL=v1.7.23
 ENV ARCH=386
 ENV MIRROR=http://dl-cdn.alpinelinux.org/alpine
 ENV PACKAGES=alpine-baselayout,\
@@ -23,7 +23,7 @@ RUN \
  mkdir /root-out && \
  curl -o \
 	/traefik -L \
-	https://github.com/containous/traefik/releases/download/v1.7.23/traefik_linux-386 && \
+	https://github.com/containous/traefik/releases/download/${REL}/traefik_linux-${ARCH} && \
  cp \
         /traefik \
         /root-out && \
